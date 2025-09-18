@@ -1,0 +1,77 @@
+[tool.black]
+line-length = 100
+target-version = ["py311"]
+
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E","F","I","UP","B","N","C90"]
+ignore = [
+    "B008",  # Do not perform function call in argument defaults (common in FastAPI)
+    "C901",  # Function is too complex (acceptable for test fixtures)
+]
+
+[tool.pytest.ini_options]
+# pytest
+minversion = "7.0"
+testpaths = [
+    "tests",
+]
+python_files = [
+    "test_*.py",
+    "*_test.py",
+]
+python_classes = [
+    "Test*",
+]
+python_functions = [
+    "test_*",
+]
+# async automático
+asyncio_mode = "auto"
+# PYTHONPATH
+pythonpath = [
+    ".",
+]
+# marcadores
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration tests",
+    "unit: marks tests as unit tests",
+]
+# opciones
+addopts = [
+    "-ra",  # resumen de tests
+    "--strict-markers",  # marcadores obligatorios
+    "--strict-config",  # config warnings = errores
+    "--cov=app",  # coverage del directorio app
+    "--cov-branch",  # coverage de branches
+    "--cov-report=term-missing:skip-covered",  # reporte en terminal
+    "--cov-report=html",  # reporte HTML
+    "--cov-report=xml",  # reporte XML para CI
+    "--cov-fail-under=70",  # fallar si coverage < 70%
+]
+# coverage
+[tool.coverage.run]
+source = ["app"]
+omit = [
+    "*/tests/*",
+    "*/test_*.py",
+    "*/__init__.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    # excluir del coverage
+    "pragma: no cover",
+    "def __repr__",
+    "def __str__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+    "class .*\\bProtocol\\):",
+    "@(abc\\.)?abstractmethod",
+]
