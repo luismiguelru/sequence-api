@@ -1,0 +1,22 @@
+# Copy this file to terraform.tfvars and fill in your values
+
+aws_region = "us-east-1"
+environment = "production"
+project_name = "sequence-api"
+
+# API Configuration
+api_cpu = 256
+api_memory = 512
+api_desired_count = 1
+
+# DocumentDB Configuration
+docdb_instance_class = "db.t3.medium"
+docdb_username = "admin"
+docdb_password = "your-secure-password-here"
+mongodb_db = "seqdb"
+
+# Security
+jwt_secret = "your-jwt-secret-key-here"
+
+# ECR Repository (will be created by CI/CD)
+ecr_repository_url = "123456789012.dkr.ecr.us-east-1.amazonaws.com/sequence-api"
