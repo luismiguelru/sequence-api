@@ -1,5 +1,5 @@
 # Multi-stage build para producción optimizada
-FROM python:3.11-slim as builder
+FROM python:3.11-slim AS builder
 
 # Instalar dependencias del sistema necesarias para compilar
 RUN apt-get update && apt-get install -y --no-install-recommends \
