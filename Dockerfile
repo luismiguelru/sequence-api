@@ -1,5 +1,5 @@
 # Multi-stage build para optimizar cache y tamaño
-FROM python:3.11-slim AS builder
+FROM python:3.14-slim AS builder
 
 # Instalar dependencias del sistema necesarias para compilar
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -14,7 +14,7 @@ COPY requirements.txt ./
 RUN pip install --no-cache-dir --user -r requirements.txt
 
 # Stage final - imagen más pequeña
-FROM python:3.11-slim
+FROM python:3.14-slim
 
 # Instalar solo curl para health checks
 RUN apt-get update && apt-get install -y --no-install-recommends \
