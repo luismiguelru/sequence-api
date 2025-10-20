@@ -17,5 +17,5 @@ coverage==7.6.1
 
 
 # lint/format
-ruff==0.6.8
+ruff==0.14.1
 black==24.8.0
